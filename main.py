@@ -22,6 +22,11 @@ deal with it
 sidenote: fuck russia too
 '''
 
+def compare(column, compare_col):
+    header_score = np.sum(100 / (np.linalg.norm(column[:230] - compare_col[:230]) + 1))
+    text_score = np.sum(100 / (np.linalg.norm(column[230:] - compare_col[230:]) + 1))
+    return((-header_score) * 2 - text_score)
+
 clus = "4"  #leave blank for all
 
 columns = np.loadtxt(f"cache{clus}.txt")
@@ -54,9 +59,8 @@ for i in range(len(s)):    # my gcse compsci teacher would be proud
         '''
         thanks danzi for this comparison alg, my pea sized brain doesnt like thinking too hard
         '''
-        header_score = np.sum(100 / (np.linalg.norm(column[:230] - compare_col[:230]) + 1))
-        text_score = np.sum(100 / (np.linalg.norm(column[230:] - compare_col[230:]) + 1))
-        total_difference = (-header_score)*2 - text_score
+        total_difference = compare(column, compare_col)
+
 
         tupley_thing = (j, total_difference)
         similarity_list.append(tupley_thing)
