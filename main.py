@@ -27,7 +27,7 @@ def compare(column, compare_col):
     text_score = np.sum(100 / (np.linalg.norm(column[230:] - compare_col[230:]) + 1))
     return((-header_score) * 2 - text_score)
 
-clus = "4"  #leave blank for all
+clus = "4"  # THIS IS WHICH CLUSTER U ARE MAKING RESULTS FOR (leave blank for all)
 
 columns = np.loadtxt(f"cache{clus}.txt")
 print(len(columns)/1033)
